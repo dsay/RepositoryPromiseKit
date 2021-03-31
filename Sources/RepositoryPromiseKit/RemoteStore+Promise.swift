@@ -42,19 +42,6 @@ public extension RemoteStore {
             })
         }
     }
-    
-    func requestItem<Item>(request: RequestProvider, keyPath: String? = nil) -> Promise<Item> {
-        Promise { resolver in
-            send(request: request, keyPath: keyPath) { (response: Swift.Result<Item, Error>) -> Void in
-                switch response {
-                case .success(let value):
-                    resolver.fulfill(value)
-                case .failure(let error):
-                    resolver.reject(error)
-                }
-            }
-        }
-    }
 }
 
 public extension RemoteStoreObjects {
